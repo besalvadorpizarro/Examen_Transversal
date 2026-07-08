@@ -173,6 +173,7 @@ while (True):
     elif opcion == 2:
         while(True):
             try:
+                #no se aplica restriccion de numeros enteros positivos, ya que el enunciado no dice explicitamente numeros enteros positivos, si no solo numeros enteros, por lo tanto solo se usa el try de ValueError
                 valor_min = int(input("Ingrese multa mínima: "))
                 valor_max = int(input("Ingrese multa máxima: "))
                 busqueda_multa(valor_min, valor_max, libros, prestamos)
