@@ -134,7 +134,6 @@ def eliminar_libro(codigo, diccionario_libros, diccionario_prestamos):
     else:
         return False, diccionario_libros, diccionario_prestamos
 
-
 libros = { 
     'L001': ['Sombras del Sur', 'A. Rojas', 'novela', 2019, 'AndesPress', False], 
     'L002': ['Python en Ruta', 'M. Diaz', 'tecnología', 2023, 'CodeBooks', True], 
@@ -173,11 +172,13 @@ while (True):
     elif opcion == 2:
         while(True):
             try:
+
                 #no se aplica restriccion de numeros enteros positivos, ya que el enunciado no dice explicitamente numeros enteros positivos, si no solo numeros enteros, por lo tanto solo se usa el try de ValueError
                 valor_min = int(input("Ingrese multa mínima: "))
                 valor_max = int(input("Ingrese multa máxima: "))
                 busqueda_multa(valor_min, valor_max, libros, prestamos)
                 break
+
             except ValueError:
                 print("Debe ingresar valores enteros")
 
@@ -203,6 +204,7 @@ while (True):
 
     elif opcion == 4:
         try:
+            
             codigo = input("Ingrese código del libro: ").upper()
             titulo = input("Ingrese título: ")
             autor = input("Ingrese autor: ")
@@ -212,6 +214,7 @@ while (True):
             es_novedad = input("¿Es novedad? (s/n): ")
             precio_multa = int(input("Ingrese precio de multa: "))
             copias_disponibles = int(input("Ingrese copias disponibles: "))
+
         except ValueError:
             print("Ingrese numeros enteros validos")
 
@@ -241,11 +244,14 @@ while (True):
 
         if validar_novedad(es_novedad) == True:
             es_novedad = True
+
         else:
             es_novedad = False
+            
         # se llama nuevamente a las funciones ya que se evita crear nuevas variables y usar mas memoria, esto debido a que la guia indica que los mensajes de validacion se deben realizar fuera de las funciones
         if validar_codigo(codigo) and validar_titulo(titulo) and validar_autor(autor) and validar_genero(genero) and validar_ano(ano) and validar_editorial(editorial) and validar_multa(precio_multa) and validar_copias and validar_copias(copias_disponibles):
             agregado, libros, prestamos = agregar_libros(codigo, titulo, autor, genero, ano, editorial, es_novedad, precio_multa, copias_disponibles, libros, prestamos)
+
         else:
             continue
 
@@ -255,8 +261,10 @@ while (True):
             print("El código ya existe")
 
     elif opcion == 5:
+
         codigo = input("Ingrese codigo: ")
         codigo_encontrado, libros, prestamos = eliminar_libro(codigo, libros, prestamos)
+
         if codigo_encontrado == True:
             print("Libro eliminado")
         else:
