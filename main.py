@@ -44,6 +44,7 @@ def buscar_codigo(codigo, diccionario_prestamos):
             continue
     return False
 
+# en el return ademas del statement booleano se devuelven los diccionarios, ya que segun la guia no se pueden usar variables globales
 def actualizar_multa(codigo, nueva_multa, diccionario_prestamos):
     existencia = buscar_codigo(codigo, diccionario_prestamos)
 
@@ -114,6 +115,7 @@ def validar_copias(copias):
     else:
         return False
 
+# en el return ademas del statement booleano se devuelven los diccionarios, ya que segun la guia no se pueden usar variables globales
 def agregar_libros(codigo, titulo, autor, genero, ano, editorial, es_novedad, precio_multa, copias_disponibles, diccionario_libros, diccionario_prestamos):
     
     if buscar_codigo(codigo, diccionario_prestamos) == False:
@@ -123,6 +125,7 @@ def agregar_libros(codigo, titulo, autor, genero, ano, editorial, es_novedad, pr
     else:
         return False, diccionario_libros, diccionario_prestamos
 
+# en el return ademas del statement booleano se devuelven los diccionarios, ya que segun la guia no se pueden usar variables globales
 def eliminar_libro(codigo, diccionario_libros, diccionario_prestamos):
     if buscar_codigo(codigo, diccionario_prestamos) == True:
         diccionario_libros.pop(codigo.upper())
@@ -239,7 +242,7 @@ while (True):
             es_novedad = True
         else:
             es_novedad = False
-        
+        # se llama nuevamente a las funciones ya que se evita crear nuevas variables y usar mas memoria, esto debido a que la guia indica que los mensajes de validacion se deben realizar fuera de las funciones
         if validar_codigo(codigo) and validar_titulo(titulo) and validar_autor(autor) and validar_genero(genero) and validar_ano(ano) and validar_editorial(editorial) and validar_multa(precio_multa) and validar_copias and validar_copias(copias_disponibles):
             agregado, libros, prestamos = agregar_libros(codigo, titulo, autor, genero, ano, editorial, es_novedad, precio_multa, copias_disponibles, libros, prestamos)
         else:
